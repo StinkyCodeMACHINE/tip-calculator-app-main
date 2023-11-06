@@ -19,7 +19,7 @@ This is a solution to the [Tip calculator app challenge on Frontend Mentor](http
 
 ### Links
 
-- Live Site URL: [https://luminous-figolla-ea91da.netlify.app/](https://luminous-figolla-ea91da.netlify.app/)
+- Live Site URL: [https://spectacular-beignet-efd2d2.netlify.app/](https://spectacular-beignet-efd2d2.netlify.app/)
 
 ## My process
 

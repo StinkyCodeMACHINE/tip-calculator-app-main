@@ -225,7 +225,7 @@ function isNumber(evt) {
             }
           "
           class="calculator__results__reset-button"
-          :disabled="!inputs.bill || !inputs.numOfPeople"
+          :disabled="inputs.bill.value === `` || inputs.numOfPeople.value === ``"
         >
           RESET
         </button>
