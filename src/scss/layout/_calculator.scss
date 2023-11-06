@@ -1,0 +1,188 @@
+@use "../util/functions" as u;
+
+.calculator {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 1.5rem;
+  display: grid;
+  grid-template-columns: 48% auto;
+  column-gap: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 650px) {
+    padding: 1rem;
+    border-radius: 1rem;
+    display: block;
+  }
+
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+
+    gap: 2rem;
+
+    @media (max-width: 650px) {
+      padding: 0.5rem;
+    }
+
+    @mixin label() {
+      &__label {
+        color: var(--dark-grayish-cyan);
+        margin-bottom: 0.3rem;
+      }
+    }
+
+    @mixin input($bgimage) {
+      @include label();
+      position: relative;
+
+      > input {
+        background-color: var(--very-light-grayish-cyan);
+        width: 100%;
+        height: 50px;
+        border-radius: 0.4rem;
+        padding-inline: 0.7rem;
+        box-sizing: border-box;
+        font-size: u.rem(24);
+        text-align: end;
+        color: var(--very-dark-cyan);
+        cursor: pointer;
+
+        background-image: url("/assets/" + $bgimage);
+        background-repeat: no-repeat;
+        background-position: 5% 50%;
+        background-size: 12px;
+        caret-color: var(--strong-cyan);
+        &:focus {
+          outline: 3px solid var(--strong-cyan);
+        }
+        &.invalid {
+          outline: 3px solid var(--red);
+
+          + div {
+            display: block;
+            position: absolute;
+            color: var(--red);
+            right: 0;
+            top: 0;
+          }
+        }
+        + div {
+          display: none;
+        }
+
+        &::placeholder {
+          color: var(--grayish-cyan);
+        }
+      }
+    }
+
+    &__bill {
+      @include input("icon-dollar.svg");
+    }
+
+    &__tip-selection {
+      @include label();
+      &__tip-options {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 117px));
+        grid-template-rows: 1fr 1fr;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 1.2rem;
+
+        @media (max-width: 650px) {
+          padding: 0.5rem;
+          grid-template-columns: repeat(2, minmax(0, 250px));
+          grid-template-rows: repeat(3, 1fr);
+        }
+
+        &__tip {
+          padding-block: 0.4rem;
+          text-align: center;
+          cursor: pointer;
+
+          border-radius: 0.4rem;
+          font-size: u.rem(24);
+
+          background-color: var(--very-dark-cyan);
+          color: var(--white);
+
+          &:last-child {
+            color: var(--very-dark-cyan);
+            caret-color: var(--strong-cyan);
+            &::placeholder {
+              color: var(--very-dark-cyan);
+            }
+          }
+          &.clicked {
+            background-color: var(--strong-cyan);
+            color: var(--very-dark-cyan);
+          }
+          &.hovered-over {
+            background-color: var(--light-grayish-cyan);
+            color: var(--very-dark-cyan);
+          }
+        }
+      }
+    }
+
+    &__num-of-people {
+      @include input("icon-person.svg");
+    }
+  }
+
+  &__results {
+    background-color: var(--very-dark-cyan);
+    border-radius: 1rem;
+    padding: 3.5rem 2.5rem 2.5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+
+    @media (max-width: 650px) {
+      margin-top: 2rem;
+    }
+
+    @mixin result() {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &__label {
+        color: var(--white);
+        & > div {
+          color: var(--grayish-cyan);
+          font-size: 0.8rem;
+        }
+      }
+      &__value {
+        font-size: 3rem;
+        color: var(--strong-cyan);
+      }
+    }
+
+    &__amount {
+      @include result();
+      margin-bottom: 1.5rem;
+    }
+
+    &__total {
+      @include result();
+    }
+
+    &__reset-button {
+      margin-top: auto;
+      background-color: var(--strong-cyan);
+      color: var(--very-dark-cyan);
+      border-radius: 0.4rem;
+      padding-block: 0.5rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      &:disabled {
+        cursor: unset;
+        opacity: 0.3;
+      }
+    }
+  }
+}

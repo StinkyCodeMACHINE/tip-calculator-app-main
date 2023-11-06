@@ -1,0 +1,46 @@
+@use "../util/functions" as u;
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background-color: var(--light-grayish-cyan);
+}
+
+#app {
+  max-width: 921px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5.4rem;
+
+  > img {
+    width: 87px;
+    height: 55px;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
